@@ -1,8 +1,15 @@
 <?php
+    require 'database_conn.php';
+?>
 
-$pdo = new PDO("mysql:dbname=wolfcode;host=localhost:3306", "root", "");
-$sql = $pdo->query('SELECT * FROM users');
+<h1>Listagem de Usuários</h1>
+<a href="insert.php">Novo usuário</a>
 
-$data = $sql->fetchAll();
-
-print_r($data);
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
+    </tr>
+</table>
