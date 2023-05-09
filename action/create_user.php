@@ -11,6 +11,9 @@ $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 // Varíavel password busca um input chamado PASSWORD de um form POST
 $password = filter_input(INPUT_POST, 'password');
 
+// Varíavel para hash de password
+$hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
 if($name && $email) {
 
     /* Varíavel sql chama a varíavel pdo criada no arquivo de configuração
@@ -23,12 +26,12 @@ if($name && $email) {
     if($sql->rowCount() === 0) {
         /* Varíavel sql chama a varíavel pdo criada no arquivo de configuração
         e prepara uma query personalizada */
-        $sql = $pdo->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :password)");
+        $sql = $pdo->prepare("INSERT INTO users(name, email, password) VALUES(:name, :email, :hashPassword)");
     
         // Ligando os valores do formulário ao seus respectivos atributos
         $sql->bindValue(':name', $name);
         $sql->bindValue(':email', $email);
-        $sql->bindValue(':password', $password);
+        $sql->bindValue(':hashPassword', $hashPassword);
     
         // Executa a query
         $sql->execute();
