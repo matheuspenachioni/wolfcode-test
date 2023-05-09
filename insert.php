@@ -1,5 +1,5 @@
 <h1>Cadastrar Usuário</h1>
-<form action="" method="POST">
+<form action="action/create_user.php" method="POST">
     <div>
         <label>Nome</label>
         <input type="text" name="name"/>
@@ -12,5 +12,5 @@
         <label>Senha</label>
         <input type="password" name="password"/>
     </div>
-    <input type="button" value="Salvar">
+    <input type="submit" value="Salvar">
 </form>
